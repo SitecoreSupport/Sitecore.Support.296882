@@ -20,6 +20,10 @@ namespace Sitecore.Support.DataExchange.Providers.Sql.BatchHandling
     {
       base.AddPlugins(source, pipelineStep);
       int sqlBulkCopyTimeout = this.GetIntValue(source, FieldNameBulkCopyTimeout);
+      if (sqlBulkCopyTimeout == 0)
+      {
+        sqlBulkCopyTimeout = 30;
+      }
       var sqlBulkCopysettings = new SqlBulkCopySettings()
       {
         SqlBulkCopyTimeout = sqlBulkCopyTimeout
